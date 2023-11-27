@@ -17,9 +17,11 @@ mycursor=mydb.cursor()
 def main():
     st.title("Welcome to CRUD Application")
     # display options for CRUD operation
+    st.sidebar.title("CRUD App")
     option=st.sidebar.selectbox("Select an operation",("Create","Read","Update","Delete"))
     # Perform operation
     if option=="Create":
+        st.sidebar.subheader("Creates a new record with attributes in the database")
         st.subheader("Create new Record")
         name=st.text_input("Enter your name")
         email=st.text_input("Enter your E-mail")
@@ -32,6 +34,7 @@ def main():
 
 
     elif option=="Read":
+        st.sidebar.subheader("Displays all the records present in database")
         st.subheader("Read Records")
         if st.button("Read"):
             mycursor.execute("select * from users")
@@ -42,6 +45,7 @@ def main():
 
 
     elif option=="Update":
+            st.sidebar.subheader("Update attributes when needed")
             st.subheader("Update Record")
         
             choice=st.selectbox("Attribute that you want to update",("Name","E-mail","Name and E-mail"))
@@ -81,6 +85,7 @@ def main():
 
 
     elif option=="Delete":
+        st.sidebar.subheader("Delete a row from the database")
         st.subheader("Delete Record")
         id=st.number_input("Enter ID of data to be deleted",min_value=1)
         if st.button("Delete"):
