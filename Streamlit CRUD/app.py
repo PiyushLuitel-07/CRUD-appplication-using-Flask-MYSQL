@@ -33,15 +33,25 @@ def main():
 
     elif option=="Read":
         st.subheader("Read Records")
-        mycursor.execute("select * from users")
-        result=mycursor.fetchall()
-        for row in result:
-            st.write(row)
+        if st.button("Read"):
+            mycursor.execute("select * from users")
+            result=mycursor.fetchall()
+            for row in result:
+                st.write(row)
 
 
 
     elif option=="Update":
         st.subheader("Update Record")
+        id=st.number_input("Enter ID of the data to be updated")
+        name=st.text_input("Enter new name")
+        email=st.text_input("Enter new E-mail")
+        if st.button("Update"):
+            sql="update users set name=%s, email=%s where id=%s"
+            val=(name,email)
+            mycursor.execute(sql,val)
+            mydb.commit()
+            st.success("Record updated successfully!")
 
 
     elif option=="Delete":
