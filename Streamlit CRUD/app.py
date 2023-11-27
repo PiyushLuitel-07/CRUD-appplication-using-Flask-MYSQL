@@ -23,10 +23,27 @@ def main():
         st.subheader("Create new Record")
         name=st.text_input("Enter your name")
         email=st.text_input("Enter your E-mail")
+        if st.button("Create"):
+            sql="insert into users(name,email) values(%s,%s)"
+            val=(name,email)
+            mycursor.execute(sql,val)
+            mydb.commit()
+            st.success("Record Created Successfully!")
+
+
     elif option=="Read":
-        st.subheader("Read Record")
+        st.subheader("Read Records")
+        mycursor.execute("select * from users")
+        result=mycursor.fetchall()
+        for row in result:
+            st.write(row)
+
+
+
     elif option=="Update":
         st.subheader("Update Record")
+
+
     elif option=="Delete":
         st.subheader("Delete Record")
 
