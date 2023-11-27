@@ -42,37 +42,40 @@ def main():
 
 
     elif option=="Update":
-        st.subheader("Update Record")
-        if st.button("Update"):
-            choice=st.sidebar.selectbox("Attribute that you want to update",("Name","E-mail","Name and E-mail"))
+            st.subheader("Update Record")
+        
+            choice=st.selectbox("Attribute that you want to update",("Name","E-mail","Name and E-mail"))
 
             if choice=="Name and E-mail":
                 id=st.number_input("Enter ID of the data to be updated",min_value=1)
                 name=st.text_input("Enter new name")
                 email=st.text_input("Enter new E-mail")
-                sql="update users set name=%s, email=%s where id=%s"
-                val=(name,email,id)
-                mycursor.execute(sql,val)
-                mydb.commit()
-                st.success("Record updated successfully!")
+                if st.button("Update"):
+                    sql="update users set name=%s, email=%s where id=%s"
+                    val=(name,email,id)
+                    mycursor.execute(sql,val)
+                    mydb.commit()
+                    st.success("Record updated successfully!")
 
             elif choice=="Name":
                 id=st.number_input("Enter ID of the data to be updated",min_value=1)
                 name=st.text_input("Enter new name")
-                sql="update users set name=%s where id=%s"
-                val=(name,id)
-                mycursor.execute(sql,val)
-                mydb.commit()
-                st.success("Record updated successfully!")
+                if st.button("Update"):
+                    sql="update users set name=%s where id=%s"
+                    val=(name,id)
+                    mycursor.execute(sql,val)
+                    mydb.commit()
+                    st.success("Record updated successfully!")
             
             elif choice=="E-mail":
                 id=st.number_input("Enter ID of the data to be updated",min_value=1)
                 email=st.text_input("Enter new E-mail")
-                sql="update users set email=%s where id=%s"
-                val=(email,id)
-                mycursor.execute(sql,val)
-                mydb.commit()
-                st.success("Record updated successfully!")
+                if st.button("Update"):
+                    sql="update users set email=%s where id=%s"
+                    val=(email,id)
+                    mycursor.execute(sql,val)
+                    mydb.commit()
+                    st.success("Record updated successfully!")
 
             
 
