@@ -43,12 +43,12 @@ def main():
 
     elif option=="Update":
         st.subheader("Update Record")
-        id=st.number_input("Enter ID of the data to be updated")
+        id=st.number_input("Enter ID of the data to be updated",min_value=1)
         name=st.text_input("Enter new name")
         email=st.text_input("Enter new E-mail")
         if st.button("Update"):
             sql="update users set name=%s, email=%s where id=%s"
-            val=(name,email)
+            val=(name,email,id)
             mycursor.execute(sql,val)
             mydb.commit()
             st.success("Record updated successfully!")
@@ -56,7 +56,13 @@ def main():
 
     elif option=="Delete":
         st.subheader("Delete Record")
-
+        id=st.number_input("Enter ID of data to be deleted",min_value=1)
+        if st.button("Delete"):
+            sql="delete from users where id=%s"
+            val=(id,)
+            mycursor.execute(sql,val)
+            mydb.commit()
+            st.success("Record deleted successfully !! ")
 
 if __name__=="__main__":
     main()
