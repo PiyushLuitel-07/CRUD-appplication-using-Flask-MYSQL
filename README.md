@@ -18,3 +18,7 @@ Install my-project (open git bash terminal and type this code)
 
 streamlit, flask, mysql.connector
 
+## Demo
+[Watch the demo video in youtube](https://youtu.be/83B7sniAyDA)
+
+
